@@ -107,13 +107,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intermediate.html">Intermediate tricks</a></li>
@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
@@ -221,16 +221,20 @@
 <span class="c1">#</span>
 <span class="c1"># This code is part of the Fatiando a Terra project (https://www.fatiando.org)</span>
 <span class="c1">#</span>
-<span class="c1"># pylint: disable=missing-docstring,import-outside-toplevel</span>
+<span class="c1"># pylint: disable=missing-docstring,import-outside-toplevel,import-self</span>
+<span class="c1">#</span>
 <span class="c1"># Import functions/classes to make the API</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">version</span>
 <span class="kn">from</span> <span class="nn">.core</span> <span class="kn">import</span> <span class="n">Pooch</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span> <span class="n">retrieve</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">os_cache</span><span class="p">,</span> <span class="n">file_hash</span><span class="p">,</span> <span class="n">make_registry</span><span class="p">,</span> <span class="n">check_version</span><span class="p">,</span> <span class="n">get_logger</span>
 <span class="kn">from</span> <span class="nn">.downloaders</span> <span class="kn">import</span> <span class="n">HTTPDownloader</span><span class="p">,</span> <span class="n">FTPDownloader</span><span class="p">,</span> <span class="n">SFTPDownloader</span>
 <span class="kn">from</span> <span class="nn">.processors</span> <span class="kn">import</span> <span class="n">Unzip</span><span class="p">,</span> <span class="n">Untar</span><span class="p">,</span> <span class="n">Decompress</span>
 
+<span class="c1"># This file is generated automatically by setuptools_scm</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_version</span>
 
-<span class="n">__version__</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="n">full_version</span>
+
+<span class="c1"># Add a &quot;v&quot; to the version number</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">_version</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span>
 
 
 <div class="viewcode-block" id="test"><a class="viewcode-back" href="../api/generated/pooch.test.html#pooch.test">[docs]</a><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">doctest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">coverage</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -287,9 +291,9 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

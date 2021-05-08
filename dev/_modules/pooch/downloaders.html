@@ -107,13 +107,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intermediate.html">Intermediate tricks</a></li>
@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
@@ -303,10 +303,11 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    progressbar : bool</span>
+<span class="sd">    progressbar : bool or an arbitrary progress bar object</span>
 <span class="sd">        If True, will print a progress bar of the download to standard error</span>
 <span class="sd">        (stderr). Requires `tqdm &lt;https://github.com/tqdm/tqdm&gt;`__ to be</span>
-<span class="sd">        installed.</span>
+<span class="sd">        installed. Alternatively, an arbitrary progress bar object can be</span>
+<span class="sd">        passed. See :ref:`custom-progressbar` for details.</span>
 <span class="sd">    chunk_size : int</span>
 <span class="sd">        Files are streamed *chunk_size* bytes at a time instead of loading</span>
 <span class="sd">        everything into memory at one. Usually doesn&#39;t need to be changed.</span>
@@ -320,9 +321,9 @@
 <span class="sd">    Download one of the data files from the Pooch repository:</span>
 
 <span class="sd">    &gt;&gt;&gt; import os</span>
-<span class="sd">    &gt;&gt;&gt; from pooch import version, check_version</span>
+<span class="sd">    &gt;&gt;&gt; from pooch import __version__, check_version</span>
 <span class="sd">    &gt;&gt;&gt; url = &quot;https://github.com/fatiando/pooch/raw/{}/data/tiny-data.txt&quot;</span>
-<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(version.full_version))</span>
+<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(__version__))</span>
 <span class="sd">    &gt;&gt;&gt; downloader = HTTPDownloader()</span>
 <span class="sd">    &gt;&gt;&gt; # Not using with Pooch.fetch so no need to pass an instance of Pooch</span>
 <span class="sd">    &gt;&gt;&gt; downloader(url=url, output_file=&quot;tiny-data.txt&quot;, pooch=None)</span>
@@ -370,7 +371,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="o">=</span> <span class="n">progressbar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">chunk_size</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">and</span> <span class="n">tqdm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">tqdm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing package &#39;tqdm&#39; required for progress bars.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="HTTPDownloader.__call__"><a class="viewcode-back" href="../../api/generated/pooch.HTTPDownloader.html#pooch.HTTPDownloader.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">pooch</span><span class="p">):</span>
@@ -398,8 +399,8 @@
             <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
             <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span><span class="p">:</span>
-                <span class="n">total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-length&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-length&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="c1"># Need to use ascii characters on Windows because there isn&#39;t</span>
                 <span class="c1"># always full unicode support</span>
                 <span class="c1"># (see https://github.com/tqdm/tqdm/issues/454)</span>
@@ -412,6 +413,9 @@
                     <span class="n">unit_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span><span class="p">:</span>
+                <span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span>
+                <span class="n">progress</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">total</span>
             <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
                     <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
@@ -464,7 +468,7 @@
 <span class="sd">    progressbar : bool</span>
 <span class="sd">        If True, will print a progress bar of the download to standard error</span>
 <span class="sd">        (stderr). Requires `tqdm &lt;https://github.com/tqdm/tqdm&gt;`__ to be</span>
-<span class="sd">        installed.</span>
+<span class="sd">        installed. **Custom progress bars are not yet supported.**</span>
 <span class="sd">    chunk_size : int</span>
 <span class="sd">        Files are streamed *chunk_size* bytes at a time instead of loading</span>
 <span class="sd">        everything into memory at one. Usually doesn&#39;t need to be changed.</span>
@@ -489,7 +493,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="o">=</span> <span class="n">progressbar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">chunk_size</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">and</span> <span class="n">tqdm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">tqdm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing package &#39;tqdm&#39; required for progress bars.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FTPDownloader.__call__"><a class="viewcode-back" href="../../api/generated/pooch.FTPDownloader.html#pooch.FTPDownloader.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">pooch</span><span class="p">):</span>
@@ -571,7 +575,7 @@
 <span class="sd">    timeout : int</span>
 <span class="sd">        Timeout in seconds for sftp socket operations, use None to mean no</span>
 <span class="sd">        timeout.</span>
-<span class="sd">    progressbar : bool</span>
+<span class="sd">    progressbar : bool or an arbitrary progress bar object</span>
 <span class="sd">        If True, will print a progress bar of the download to standard</span>
 <span class="sd">        error (stderr). Requires `tqdm &lt;https://github.com/tqdm/tqdm&gt;`__ to</span>
 <span class="sd">        be installed.</span>
@@ -639,6 +643,7 @@
                     <span class="n">unit_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                     <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">progress</span><span class="p">:</span>
 
                     <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
@@ -666,9 +671,9 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

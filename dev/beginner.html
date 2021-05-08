@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,13 +110,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Beginner tricks</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-problem">The problem</a></li>
@@ -131,7 +132,7 @@
 <li class="toctree-l1"><a class="reference internal" href="downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
@@ -227,7 +228,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="beginner-tricks">
+  <section id="beginner-tricks">
 <span id="beginner"></span><h1>Beginner tricks<a class="headerlink" href="#beginner-tricks" title="Permalink to this headline">¶</a></h1>
 <p>This section covers the minimal setup required to use Pooch to manage your data
 collection. We highly recommend looking at the <a class="reference internal" href="intermediate.html#intermediate"><span class="std std-ref">Intermediate tricks</span></a> tutorial as
@@ -237,16 +238,16 @@ well after you’re done with this one.</p>
 <p>If you’re only looking to download a single file, see <a class="reference internal" href="retrieve.html#retrieve"><span class="std std-ref">Retrieving a data file</span></a>
 instead.</p>
 </div>
-<div class="section" id="the-problem">
+<section id="the-problem">
 <h2>The problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
 <p>You develop a Python library called <code class="docutils literal notranslate"><span class="pre">plumbus</span></code> for analysing data emitted by
 interdimensional portals. You want to distribute sample data so that your users
 can easily try out the library by copying and pasting from the docs. You want
 to have a <code class="docutils literal notranslate"><span class="pre">plumbus.datasets</span></code> module that defines functions like
 <code class="docutils literal notranslate"><span class="pre">fetch_c137()</span></code> that will return the data loaded as a
-<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> for convenient access.</p>
-</div>
-<div class="section" id="assumptions">
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> for convenient access.</p>
+</section>
+<section id="assumptions">
 <h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h2>
 <p>We’ll set up Pooch to solve your data distribution needs.
 In this example, we’ll work with the follow assumptions:</p>
@@ -274,8 +275,8 @@ setup.py
 </pre></div>
 </div>
 <p>The sample data are stored in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder of your repository.</p>
-</div>
-<div class="section" id="basic-setup">
+</section>
+<section id="basic-setup">
 <h2>Basic setup<a class="headerlink" href="#basic-setup" title="Permalink to this headline">¶</a></h2>
 <p>Pooch can download and cache your data files to the users’ computer
 automatically. This is what the <code class="docutils literal notranslate"><span class="pre">plumbus/datasets.py</span></code> file would look like:</p>
@@ -343,8 +344,8 @@ follows the assumptions laid out above. Pooch also supports downloading files
 from multiple sources (including FTP), and more. See the <a class="reference internal" href="intermediate.html#intermediate"><span class="std std-ref">Intermediate tricks</span></a>
 tutorial and the documentation for <a class="reference internal" href="api/generated/pooch.create.html#pooch.create" title="pooch.create"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.create</span></code></a> and <a class="reference internal" href="api/generated/pooch.Pooch.html#pooch.Pooch" title="pooch.Pooch"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.Pooch</span></code></a>
 for more options.</p>
-</div>
-<div class="section" id="hashes">
+</section>
+<section id="hashes">
 <h2>Hashes<a class="headerlink" href="#hashes" title="Permalink to this headline">¶</a></h2>
 <p>Pooch uses <a class="reference external" href="https://en.wikipedia.org/wiki/SHA-2">SHA256</a> hashes by default
 to check if files are up-to-date or possibly corrupted:</p>
@@ -376,8 +377,8 @@ calling Python’s <a class="reference external" href="https://docs.python.org/3
 it to the hash, for example <code class="docutils literal notranslate"><span class="pre">&quot;md5:0hljc7298ndo2&quot;</span></code> or
 <code class="docutils literal notranslate"><span class="pre">&quot;sha512:803o3uh2pecb2p3829d1bwouh9d&quot;</span></code>. Pooch will understand this and use
 the appropriate method.</p>
-</div>
-<div class="section" id="versioning">
+</section>
+<section id="versioning">
 <h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h2>
 <p>The files from different version of your project will be kept in separate
 folders to make sure they don’t conflict with each other. This way, you can
@@ -390,8 +391,8 @@ be updated. Notice that there is a format specifier <code class="docutils litera
 that Pooch substitutes for you.</p>
 <p>Versioning is optional and can be ignored by omitting the <code class="docutils literal notranslate"><span class="pre">version</span></code> and
 <code class="docutils literal notranslate"><span class="pre">version_dev</span></code> arguments or setting them to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</div>
-<div class="section" id="where-to-go-from-here">
+</section>
+<section id="where-to-go-from-here">
 <h2>Where to go from here<a class="headerlink" href="#where-to-go-from-here" title="Permalink to this headline">¶</a></h2>
 <p>Pooch has more features for handling different download protocols, handling
 large registries, downloading from multiple sources, and more. Check out the
@@ -402,8 +403,8 @@ file, etc) through its <a class="reference internal" href="downloaders.html#down
 <p>If you any questions, please feel free to ask on our
 <a class="reference external" href="http://contact.fatiando.org/">Slack chatroom</a> or by opening an
 <a class="reference external" href="https://github.com/fatiando/pooch/issues">issue on GitHub</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -426,9 +427,9 @@ file, etc) through its <a class="reference internal" href="downloaders.html#down
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

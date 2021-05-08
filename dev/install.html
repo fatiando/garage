@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,7 +110,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#which-python">Which Python?</a></li>
@@ -124,7 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intermediate.html">Intermediate tricks</a></li>
@@ -132,7 +133,7 @@
 <li class="toctree-l1"><a class="reference internal" href="downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
@@ -228,9 +229,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installing">
+  <section id="installing">
 <span id="install"></span><h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="which-python">
+<section id="which-python">
 <h2>Which Python?<a class="headerlink" href="#which-python" title="Permalink to this headline">¶</a></h2>
 <p>You’ll need <strong>Python &gt;= 3.6</strong> (see <a class="reference internal" href="#python-versions"><span class="std std-ref">Python version compatibility</span></a> if you
 require support for older versions).</p>
@@ -241,31 +242,31 @@ Python distributions to ensure you have all dependencies installed and the
 <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager available.
 Installing Anaconda does not require administrative rights to your computer and
 doesn’t interfere with any other Python installations in your system.</p>
-</div>
-<div class="section" id="installing-with-conda">
+</section>
+<section id="installing-with-conda">
 <h2>Installing with conda<a class="headerlink" href="#installing-with-conda" title="Permalink to this headline">¶</a></h2>
 <p>You can install pooch using the <a class="reference external" href="https://conda.io/">conda package manager</a>
 that comes with the Anaconda distribution:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pooch</span> <span class="o">--</span><span class="n">channel</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-with-pip">
+</section>
+<section id="installing-with-pip">
 <h2>Installing with pip<a class="headerlink" href="#installing-with-pip" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively, you can also use the <a class="reference external" href="https://pypi.org/project/pip/">pip package manager</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pooch</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-the-latest-development-version">
+</section>
+<section id="installing-the-latest-development-version">
 <h2>Installing the latest development version<a class="headerlink" href="#installing-the-latest-development-version" title="Permalink to this headline">¶</a></h2>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the latest version of the source code from
 GitHub:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fatiando</span><span class="o">/</span><span class="n">pooch</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="dependencies">
+</section>
+<section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <p>The required dependencies should be installed automatically when you install
 Pooch using <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Optional dependencies have to be installed
@@ -279,12 +280,12 @@ manually.</p>
 <p>Optional:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a>: Required to print a download
-progress bar (see <a class="reference internal" href="api/generated/pooch.HTTPDownloader.html#pooch.HTTPDownloader" title="pooch.HTTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">pooch.HTTPDownloader</span></code></a>).</p></li>
+progress bar (see <a class="reference internal" href="intermediate.html#tqdm-progressbar"><span class="std std-ref">Printing a download progress bar with tqdm</span></a> or <a class="reference internal" href="intermediate.html#custom-progressbar"><span class="std std-ref">Using custom progress bars</span></a>).</p></li>
 <li><p><a class="reference external" href="https://github.com/paramiko/paramiko">paramiko</a>: Required for SFTP
 downloads (see <a class="reference internal" href="api/generated/pooch.SFTPDownloader.html#pooch.SFTPDownloader" title="pooch.SFTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">pooch.SFTPDownloader</span></code></a>).</p></li>
 </ul>
-</div>
-<div class="section" id="testing-your-install">
+</section>
+<section id="testing-your-install">
 <h2>Testing your install<a class="headerlink" href="#testing-your-install" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -301,8 +302,8 @@ Python interpreter or Jupyter notebook:</p>
 <span class="n">pooch</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="python-version-compatibility">
+</section>
+<section id="python-version-compatibility">
 <span id="python-versions"></span><h2>Python version compatibility<a class="headerlink" href="#python-version-compatibility" title="Permalink to this headline">¶</a></h2>
 <p>If you require support for older Python versions, please pin Pooch to the
 following releases to ensure compatibility:</p>
@@ -323,8 +324,8 @@ following releases to ensure compatibility:</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -347,9 +348,9 @@ following releases to ensure compatibility:</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

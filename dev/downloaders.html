@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,13 +110,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intermediate.html">Intermediate tricks</a></li>
@@ -128,7 +129,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
@@ -224,7 +225,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="downloaders">
+  <section id="downloaders">
 <span id="id1"></span><h1>Downloaders<a class="headerlink" href="#downloaders" title="Permalink to this headline">¶</a></h1>
 <p>By default, <a class="reference internal" href="api/generated/pooch.Pooch.html#pooch.Pooch.fetch" title="pooch.Pooch.fetch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.Pooch.fetch</span></code></a> and <a class="reference internal" href="api/generated/pooch.retrieve.html#pooch.retrieve" title="pooch.retrieve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.retrieve</span></code></a> will detect
 the download protocol from the given URL (HTTP, FTP, or SFTP) and use the
@@ -255,7 +256,7 @@ can pass a <code class="docutils literal notranslate"><span class="pre">download
 <p>Pooch provides downloaders for HTTP, FTP, and SFTP that support authentication
 and optionally printing progress bars. See <a class="reference internal" href="api/index.html#api"><span class="std std-ref">API Reference</span></a> for a list of available
 downloaders.</p>
-<div class="section" id="http-authentication">
+<section id="http-authentication">
 <h2>HTTP authentication<a class="headerlink" href="#http-authentication" title="Permalink to this headline">¶</a></h2>
 <p>Use the <a class="reference internal" href="api/generated/pooch.HTTPDownloader.html#pooch.HTTPDownloader" title="pooch.HTTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPDownloader</span></code></a> class directly to provide login
 credentials to HTTP servers that require basic authentication. For example:</p>
@@ -293,8 +294,8 @@ variables. The download code could look something like so:</p>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ftp-sftp-with-authentication">
+</section>
+<section id="ftp-sftp-with-authentication">
 <h2>FTP/SFTP with authentication<a class="headerlink" href="#ftp-sftp-with-authentication" title="Permalink to this headline">¶</a></h2>
 <p>Pooch also comes with the <a class="reference internal" href="api/generated/pooch.FTPDownloader.html#pooch.FTPDownloader" title="pooch.FTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">FTPDownloader</span></code></a> and
 <a class="reference internal" href="api/generated/pooch.SFTPDownloader.html#pooch.SFTPDownloader" title="pooch.SFTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SFTPDownloader</span></code></a> downloaders that can be used
@@ -321,8 +322,8 @@ downloader class explicitly (works with both FTP and SFTP):</p>
 <p class="admonition-title">Note</p>
 <p>To download files over SFTP, the package <a class="reference external" href="https://github.com/paramiko/paramiko">paramiko</a> needs to be installed.</p>
 </div>
-</div>
-<div class="section" id="custom-downloaders">
+</section>
+<section id="custom-downloaders">
 <h2>Custom downloaders<a class="headerlink" href="#custom-downloaders" title="Permalink to this headline">¶</a></h2>
 <p>If your use case is not covered by our downloaders, you can implement your own.
 <a class="reference internal" href="api/generated/pooch.Pooch.html#pooch.Pooch.fetch" title="pooch.Pooch.fetch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.Pooch.fetch</span></code></a> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.retrive</span></code> will accept any <em>callable
@@ -355,8 +356,8 @@ redirected from the original download URL:</p>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -379,9 +380,9 @@ redirected from the original download URL:</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

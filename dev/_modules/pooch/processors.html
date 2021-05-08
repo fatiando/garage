@@ -107,13 +107,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intermediate.html">Intermediate tricks</a></li>
@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
@@ -232,6 +232,7 @@
 <span class="kn">import</span> <span class="nn">gzip</span>
 <span class="kn">import</span> <span class="nn">lzma</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
 <span class="kn">from</span> <span class="nn">tarfile</span> <span class="kn">import</span> <span class="n">TarFile</span>
 
@@ -259,8 +260,9 @@
     <span class="c1"># String appended to unpacked archive. To be implemented in subclass</span>
     <span class="n">suffix</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">members</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">members</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extract_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">members</span> <span class="o">=</span> <span class="n">members</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span> <span class="o">=</span> <span class="n">extract_dir</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">pooch</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -287,21 +289,25 @@
 <span class="sd">            A list of the full path to all files in the extracted archive.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                <span class="s2">&quot;Derived classes must define the &#39;suffix&#39; attribute.&quot;</span>
+                <span class="s2">&quot;Derived classes must define either a &#39;suffix&#39; attribute or &quot;</span>
+                <span class="s2">&quot;an &#39;extract_dir&#39; attribute.&quot;</span>
             <span class="p">)</span>
-        <span class="n">extract_dir</span> <span class="o">=</span> <span class="n">fname</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span>
-        <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="s2">&quot;download&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span> <span class="o">=</span> <span class="n">fname</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">archive_dir</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">archive_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="s2">&quot;download&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span><span class="p">):</span>
             <span class="c1"># Make sure that the folder with the extracted files exists</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">):</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_extract_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">extract_dir</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_extract_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span><span class="p">)</span>
         <span class="c1"># Get a list of all file names (including subdirectories) in our folder</span>
         <span class="c1"># of unzipped files.</span>
         <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_dir</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">files</span>
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">fnames</span>
@@ -331,6 +337,13 @@
 <span class="sd">        If None, will unpack all files in the zip archive. Otherwise, *members*</span>
 <span class="sd">        must be a list of file names to unpack from the archive. Only these</span>
 <span class="sd">        files will be unpacked.</span>
+<span class="sd">    extract_dir : str or None</span>
+<span class="sd">        If None, files will be unpacked to the default location (a folder in</span>
+<span class="sd">        the same location as the downloaded zip file, with the suffix</span>
+<span class="sd">        ``.unzip`` added). Otherwise, files will be unpacked to</span>
+<span class="sd">        ``extract_dir``, which is interpreted as a *relative path* (relative to</span>
+<span class="sd">        the cache location provided by :func:`pooch.retrieve` or</span>
+<span class="sd">        :meth:`pooch.Pooch.fetch`).</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -353,6 +366,11 @@
                     <span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                         <span class="s2">&quot;Extracting &#39;</span><span class="si">%s</span><span class="s2">&#39; from &#39;</span><span class="si">%s</span><span class="s2">&#39; to &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">extract_dir</span>
                     <span class="p">)</span>
+                    <span class="c1"># make sure the target folder exists for nested members</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">member</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">full_dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">,</span> <span class="o">*</span><span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">full_dir_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                     <span class="c1"># Extract the data file from within the archive</span>
                     <span class="k">with</span> <span class="n">zip_file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">member</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
                         <span class="c1"># Save it to our desired file name</span>
@@ -378,6 +396,13 @@
 <span class="sd">        If None, will unpack all files in the archive. Otherwise, *members*</span>
 <span class="sd">        must be a list of file names to unpack from the archive. Only these</span>
 <span class="sd">        files will be unpacked.</span>
+<span class="sd">    extract_dir : str or None</span>
+<span class="sd">        If None, files will be unpacked to the default location (a folder in</span>
+<span class="sd">        the same location as the downloaded tar file, with the suffix</span>
+<span class="sd">        ``.untar`` added). Otherwise, files will be unpacked to</span>
+<span class="sd">        ``extract_dir``, which is interpreted as a *relative path* (relative to</span>
+<span class="sd">        the cache location  provided by :func:`pooch.retrieve` or</span>
+<span class="sd">        :meth:`pooch.Pooch.fetch`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;.untar&quot;</span>
@@ -399,6 +424,11 @@
                     <span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                         <span class="s2">&quot;Extracting &#39;</span><span class="si">%s</span><span class="s2">&#39; from &#39;</span><span class="si">%s</span><span class="s2">&#39; to &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">extract_dir</span>
                     <span class="p">)</span>
+                    <span class="c1"># make sure the target folder exists for nested members</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">member</span><span class="p">)</span><span class="o">.</span><span class="n">parts</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">full_dir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">,</span> <span class="o">*</span><span class="n">parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">full_dir_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                     <span class="c1"># Extract the data file from within the archive</span>
                     <span class="c1"># Python 2.7: extractfile doesn&#39;t return a context manager</span>
                     <span class="n">data_file</span> <span class="o">=</span> <span class="n">tar_file</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">member</span><span class="p">)</span>
@@ -547,9 +577,9 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

@@ -107,13 +107,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intermediate.html">Intermediate tricks</a></li>
@@ -121,7 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
@@ -329,10 +329,10 @@
 <span class="sd">    Download one of the data files from the Pooch repository on GitHub:</span>
 
 <span class="sd">    &gt;&gt;&gt; import os</span>
-<span class="sd">    &gt;&gt;&gt; from pooch import version, check_version, retrieve</span>
+<span class="sd">    &gt;&gt;&gt; from pooch import __version__, check_version, retrieve</span>
 <span class="sd">    &gt;&gt;&gt; # Make a URL for the version of pooch we have installed</span>
 <span class="sd">    &gt;&gt;&gt; url = &quot;https://github.com/fatiando/pooch/raw/{}/data/tiny-data.txt&quot;</span>
-<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(version.full_version))</span>
+<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(__version__))</span>
 <span class="sd">    &gt;&gt;&gt; # Download the file and save it locally. Will check the MD5 checksum of</span>
 <span class="sd">    &gt;&gt;&gt; # the downloaded file against the given value to make sure it&#39;s the</span>
 <span class="sd">    &gt;&gt;&gt; # right file. You can use other hashes by specifying different</span>
@@ -360,7 +360,7 @@
 <span class="sd">    &gt;&gt;&gt; # URLs to a gzip compressed version of the data file.</span>
 <span class="sd">    &gt;&gt;&gt; url = (&quot;https://github.com/fatiando/pooch/raw/{}/&quot;</span>
 <span class="sd">    ...        + &quot;pooch/tests/data/tiny-data.txt.gz&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(version.full_version))</span>
+<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(__version__))</span>
 <span class="sd">    &gt;&gt;&gt; # By default, you would have to decompress the file yourself</span>
 <span class="sd">    &gt;&gt;&gt; fname = retrieve(</span>
 <span class="sd">    ...     url,</span>
@@ -392,7 +392,7 @@
 <span class="sd">    &gt;&gt;&gt; # URLs to a zip archive with a single data file.</span>
 <span class="sd">    &gt;&gt;&gt; url = (&quot;https://github.com/fatiando/pooch/raw/{}/&quot;</span>
 <span class="sd">    ...        + &quot;pooch/tests/data/tiny-data.zip&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(version.full_version))</span>
+<span class="sd">    &gt;&gt;&gt; url = url.format(check_version(__version__))</span>
 <span class="sd">    &gt;&gt;&gt; # By default, you would get the path to the archive</span>
 <span class="sd">    &gt;&gt;&gt; fname = retrieve(</span>
 <span class="sd">    ...     url,</span>
@@ -969,9 +969,9 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

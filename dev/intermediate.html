@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,13 +110,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Intermediate tricks</a><ul>
@@ -125,14 +126,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#file-specific-urls">File-specific URLs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#download-protocols">Download protocols</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subdirectories">Subdirectories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#printing-a-download-progress-bar">Printing a download progress bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#printing-a-download-progress-bar-with-tqdm">Printing a download progress bar with <code class="docutils literal notranslate"><span class="pre">tqdm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-custom-progress-bars">Using custom progress bars</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
@@ -228,13 +230,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="intermediate-tricks">
+  <section id="intermediate-tricks">
 <span id="intermediate"></span><h1>Intermediate tricks<a class="headerlink" href="#intermediate-tricks" title="Permalink to this headline">¶</a></h1>
 <p>This section covers intermediate configuration that, while not strictly
 necessary, you might want to consider using on your project. In particular,
 allowing users to <strong>control the local storage location</strong> and <strong>registry files</strong>
 are <strong>recommended</strong> for most projects.</p>
-<div class="section" id="user-defined-local-storage-location">
+<section id="user-defined-local-storage-location">
 <h2>User-defined local storage location<a class="headerlink" href="#user-defined-local-storage-location" title="Permalink to this headline">¶</a></h2>
 <p>In the above example, the location of the local storage in the users’ computer
 is hard-coded. There is no way for them to change it to something else. To
@@ -259,8 +261,8 @@ using an environment variable:</p>
 variable, we’ll use its value instead of <code class="docutils literal notranslate"><span class="pre">path</span></code>. Pooch will still append the
 value of <code class="docutils literal notranslate"><span class="pre">version</span></code> to the path, so the value of <code class="docutils literal notranslate"><span class="pre">PLUMBUS_DATA_DIR</span></code> should
 not include a version number.</p>
-</div>
-<div class="section" id="registry-files-dealing-with-large-registries">
+</section>
+<section id="registry-files-dealing-with-large-registries">
 <h2>Registry files (dealing with large registries)<a class="headerlink" href="#registry-files-dealing-with-large-registries" title="Permalink to this headline">¶</a></h2>
 <p>If your project has a large number of data files, it can be tedious to list
 them in a dictionary. In these cases, it’s better to store the file names and
@@ -327,8 +329,8 @@ cronen.csv 1upodh2ioduhw9celdjhlfvhksgdwikdgcowjhcwoduchowjg8w
 using comments as earlier versions cannot handle them:
 <code class="docutils literal notranslate"><span class="pre">install_requires</span> <span class="pre">=</span> <span class="pre">[...,</span> <span class="pre">&quot;pooch&gt;=1.2.0&quot;,</span> <span class="pre">...]</span></code></p>
 </div>
-</div>
-<div class="section" id="creating-a-registry-file">
+</section>
+<section id="creating-a-registry-file">
 <h2>Creating a registry file<a class="headerlink" href="#creating-a-registry-file" title="Permalink to this headline">¶</a></h2>
 <p>If you have many data files, creating the registry and keeping it updated can
 be a challenge. Function <a class="reference internal" href="api/generated/pooch.make_registry.html#pooch.make_registry" title="pooch.make_registry"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.make_registry</span></code></a> will create a registry
@@ -337,8 +339,8 @@ registry file for our fictitious project from the command-line:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python -c <span class="s2">&quot;import pooch; pooch.make_registry(&#39;data&#39;, &#39;plumbus/registry.txt&#39;)&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="file-specific-urls">
+</section>
+<section id="file-specific-urls">
 <h2>File-specific URLs<a class="headerlink" href="#file-specific-urls" title="Permalink to this headline">¶</a></h2>
 <p>You can set a custom download URL for individual files with the <code class="docutils literal notranslate"><span class="pre">urls</span></code>
 argument of <a class="reference internal" href="api/generated/pooch.create.html#pooch.create" title="pooch.create"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.create</span></code></a> or <a class="reference internal" href="api/generated/pooch.Pooch.html#pooch.Pooch" title="pooch.Pooch"><code class="xref py py-class docutils literal notranslate"><span class="pre">pooch.Pooch</span></code></a>. It should be a
@@ -394,8 +396,8 @@ module code doesn’t change at all:</p>
 <span class="n">POOCH</span><span class="o">.</span><span class="n">load_registry</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;registry.txt&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="download-protocols">
+</section>
+<section id="download-protocols">
 <h2>Download protocols<a class="headerlink" href="#download-protocols" title="Permalink to this headline">¶</a></h2>
 <p>Pooch supports the HTTP, FTP, and SFTP protocols by default. It will detect the
 correct protocol from the URL and use the appropriate download method. For
@@ -429,17 +431,17 @@ authentication. See <a class="reference internal" href="downloaders.html#downloa
 <p class="admonition-title">Note</p>
 <p>To download files over SFTP, the package <a class="reference external" href="https://github.com/paramiko/paramiko">paramiko</a> needs to be installed.</p>
 </div>
-</div>
-<div class="section" id="subdirectories">
+</section>
+<section id="subdirectories">
 <h2>Subdirectories<a class="headerlink" href="#subdirectories" title="Permalink to this headline">¶</a></h2>
 <p>You can have data files in subdirectories of the remote data store. These files
 will be saved to the same subdirectories in the local storage folder. Note,
 however, that the names of these files in the registry <strong>must use Unix-style
 separators</strong> (<code class="docutils literal notranslate"><span class="pre">'/'</span></code>) even on Windows. We will handle the appropriate
 conversions.</p>
-</div>
-<div class="section" id="printing-a-download-progress-bar">
-<h2>Printing a download progress bar<a class="headerlink" href="#printing-a-download-progress-bar" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="printing-a-download-progress-bar-with-tqdm">
+<span id="tqdm-progressbar"></span><h2>Printing a download progress bar with <code class="docutils literal notranslate"><span class="pre">tqdm</span></code><a class="headerlink" href="#printing-a-download-progress-bar-with-tqdm" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="api/generated/pooch.HTTPDownloader.html#pooch.HTTPDownloader" title="pooch.HTTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPDownloader</span></code></a> can use <a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a>
 to print a download progress bar. This is turned off by default but can be
 enabled using:</p>
@@ -466,8 +468,53 @@ like this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">tqdm</span></code> is not installed by default with Pooch. You will have to install
 it separately in order to use this feature.</p>
 </div>
+</section>
+<section id="using-custom-progress-bars">
+<span id="custom-progressbar"></span><h2>Using custom progress bars<a class="headerlink" href="#using-custom-progress-bars" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At the moment, this feature is only available for
+<a class="reference internal" href="api/generated/pooch.HTTPDownloader.html#pooch.HTTPDownloader" title="pooch.HTTPDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">pooch.HTTPDownloader</span></code></a>.</p>
 </div>
+<p>Alternatively, you can pass an arbitrary object that behaves like a progress
+that implements the <code class="docutils literal notranslate"><span class="pre">update</span></code>, <code class="docutils literal notranslate"><span class="pre">reset</span></code>, and <code class="docutils literal notranslate"><span class="pre">close</span></code> methods. <code class="docutils literal notranslate"><span class="pre">update</span></code>
+should accept a single integer positional argument representing the current
+completion (in bytes), while <code class="docutils literal notranslate"><span class="pre">reset</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> do not take any argument
+beside <code class="docutils literal notranslate"><span class="pre">self</span></code>. The object must also have a <code class="docutils literal notranslate"><span class="pre">total</span></code> attribute that can be set
+from outside the class.
+In other words, the custom progress bar needs to behave like a <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> progress bar.
+Here’s a minimal working example of such a custom “progress display” class</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">class</span> <span class="nc">MinimalProgressDisplay</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">total</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>An instance of this class can now be passed to an <code class="docutils literal notranslate"><span class="pre">HTTPDownloader</span></code> as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pbar</span> <span class="o">=</span> <span class="n">MinimalProgressDisplay</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">download</span> <span class="o">=</span> <span class="n">HTTPDownloader</span><span class="p">(</span><span class="n">progressbar</span><span class="o">=</span><span class="n">pbar</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
 
 
            </div>
@@ -490,9 +537,9 @@ it separately in order to use this feature.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

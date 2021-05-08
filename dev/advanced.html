@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,13 +110,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intermediate.html">Intermediate tricks</a></li>
@@ -129,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
@@ -225,11 +226,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="advanced-tricks">
+  <section id="advanced-tricks">
 <span id="advanced"></span><h1>Advanced tricks<a class="headerlink" href="#advanced-tricks" title="Permalink to this headline">¶</a></h1>
 <p>These are more advanced things that can be done for specific use cases. <strong>Most
 projects will not require these</strong>.</p>
-<div class="section" id="adjusting-the-logging-level">
+<section id="adjusting-the-logging-level">
 <h2>Adjusting the logging level<a class="headerlink" href="#adjusting-the-logging-level" title="Permalink to this headline">¶</a></h2>
 <p>Pooch will log events like downloading a new file, updating an existing one, or
 unpacking an archive by printing to the terminal. You can change how verbose
@@ -244,8 +245,8 @@ you only care about warnings or errors, like inability to create the data
 cache. The event logger is a <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></a> object, so you can use
 that class’s methods to handle logging events in more sophisticated ways if you
 wish.</p>
-</div>
-<div class="section" id="retry-failed-downloads">
+</section>
+<section id="retry-failed-downloads">
 <h2>Retry failed downloads<a class="headerlink" href="#retry-failed-downloads" title="Permalink to this headline">¶</a></h2>
 <p>When downloading data repeatedly, like in continuous integration, failures can
 occur due to sporadic network outages or other factors outside of our control.
@@ -262,8 +263,8 @@ result in a failed download.</p>
 <p class="admonition-title">Note</p>
 <p>Requires Pooch &gt;= 1.3.0.</p>
 </div>
-</div>
-<div class="section" id="bypassing-the-hash-check">
+</section>
+<section id="bypassing-the-hash-check">
 <h2>Bypassing the hash check<a class="headerlink" href="#bypassing-the-hash-check" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes we might not know the hash of the file or it could change on the
 server periodically. In these cases, we need a way of bypassing the hash check.
@@ -304,8 +305,8 @@ the files once, unless they are deleted from the cache.</p>
 <p>If this script is run over a period of time, your cache directory will
 increase in size, as the files are stored in daily subdirectories.</p>
 </div>
-</div>
-<div class="section" id="create-registry-file-from-remote-files">
+</section>
+<section id="create-registry-file-from-remote-files">
 <h2>Create registry file from remote files<a class="headerlink" href="#create-registry-file-from-remote-files" title="Permalink to this headline">¶</a></h2>
 <p>If you want to create a registry file for a large number of data files that are
 available for download but you don’t have their hashes or any local copies,
@@ -373,8 +374,8 @@ know the file hashes before hand). Only do this for trusted data sources
 and over a secure connection. If you have access to file hashes/checksums,
 <strong>we highly recommend using them</strong> to set the <code class="docutils literal notranslate"><span class="pre">known_hash</span></code> argument.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -397,9 +398,9 @@ and over a secure connection. If you have access to file hashes/checksums,
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>

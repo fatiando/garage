@@ -5,7 +5,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
@@ -109,13 +110,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../retrieve.html">Retrieving a data file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Pooch</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Training your Pooch</span></p>
+<p><span class="caption-text">Training your Pooch</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../beginner.html">Beginner tricks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../intermediate.html">Intermediate tricks</a></li>
@@ -123,7 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../downloaders.html">Downloaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../processors.html">Processors</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference Documentation</span></p>
+<p><span class="caption-text">Reference Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#core">Core</a></li>
@@ -235,11 +236,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pooch-unzip">
+  <section id="pooch-unzip">
 <h1>pooch.Unzip<a class="headerlink" href="#pooch-unzip" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="pooch.Unzip">
-<em class="property">class </em><code class="sig-prename descclassname">pooch.</code><code class="sig-name descname">Unzip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">members</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pooch/processors.html#Unzip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pooch.Unzip" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pooch.</code><code class="sig-name descname">Unzip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">members</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">extract_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pooch/processors.html#Unzip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pooch.Unzip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processor that unpacks a zip archive and returns a list of all files.</p>
 <p>Use with <a class="reference internal" href="pooch.Pooch.html#pooch.Pooch.fetch" title="pooch.Pooch.fetch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.Pooch.fetch</span></code></a> or <a class="reference internal" href="pooch.retrieve.html#pooch.retrieve" title="pooch.retrieve"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.retrieve</span></code></a> to unzip a
 downloaded data file into a folder in the local data store. The
@@ -248,9 +249,17 @@ instead of the zip archive.</p>
 <p>The output folder is <code class="docutils literal notranslate"><span class="pre">{fname}.unzip</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>members</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – If None, will unpack all files in the zip archive. Otherwise, <em>members</em>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>members</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – If None, will unpack all files in the zip archive. Otherwise, <em>members</em>
 must be a list of file names to unpack from the archive. Only these
-files will be unpacked.</p>
+files will be unpacked.</p></li>
+<li><p><strong>extract_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – If None, files will be unpacked to the default location (a folder in
+the same location as the downloaded zip file, with the suffix
+<code class="docutils literal notranslate"><span class="pre">.unzip</span></code> added). Otherwise, files will be unpacked to
+<code class="docutils literal notranslate"><span class="pre">extract_dir</span></code>, which is interpreted as a <em>relative path</em> (relative to
+the cache location provided by <a class="reference internal" href="pooch.retrieve.html#pooch.retrieve" title="pooch.retrieve"><code class="xref py py-func docutils literal notranslate"><span class="pre">pooch.retrieve</span></code></a> or
+<a class="reference internal" href="pooch.Pooch.html#pooch.Pooch.fetch" title="pooch.Pooch.fetch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pooch.Pooch.fetch</span></code></a>).</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Methods Summary</p>
@@ -293,7 +302,7 @@ files will be unpacked.</p>
 </dl>
 </dd></dl>
 
-<div style='clear:both'></div></div>
+<div style='clear:both'></div></section>
 
 
            </div>
@@ -316,9 +325,9 @@ files will be unpacked.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2018-2020, The Pooch Developers.
+        &copy; Copyright 2018-2021, The Pooch Developers.
       <span class="lastupdated">
-        Last updated on Nov 27, 2020.
+        Last updated on May 08, 2021.
       </span>
 
     </p>
